@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        li{
+            color: rgb(242, 10, 10);
+            list-style: none;
+            margin-right: 20px;
+        }
+        body{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("abc.jpg");
+        }
+        h1{
+            margin-top: 150px;
+            width:40%;
+            position:relative; left:450px;
+            text-align: center;
+            color: rgb(15, 15, 15);
+            font-family: Georgia;
+            font-style: sans-serif;
+        }
+        ul{
+            text-align: center;
+            width:20%;
+            height: 10cm;
+            font-family: cursive;
+            font-style: sans-serif;
+            position:relative; left:590px;
+          
+        }
+        #input{
+            height: 30px;
+            width: 400px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        #form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       .todo{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+       } 
+    </style>
+</head>
+<body>
+    <h1 style="color: white; font-size:60px;">To-Do List</h1>
+    <h1>
+        <%= PresentDay %>
+    </h1>
+    
+    <ul>
+        <form id="form" action="/add" method="post">
+            <input id="input" type="text" name="newItem" autocomplete="off" >
+            <button type="submit" style="border-radius: 10px; height: 30px; width: 60px;">Add</button>
+        </form>
+
+        <% for ( let i=0; i < newListItems.length ; i++ ) { %>
+        <form class="todo" action="/remove" method="post">
+            <li> <%= newListItems[i].task %> </li>
+            <button type="submit" name="remove" value='<%= newListItems[i].id %>' style=" border-radius: 6px;">Remove</button>
+            <button type="submit" name="update" value='<%= newListItems[i].id %>' formaction="/update" style=" border-radius: 6px;">Update</button>
+        </form>
+        <% } %>
+    </ul>
+</body>
+</html>
